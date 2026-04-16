@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Chable Tair — The Perspective Engine. Explore philosophy, psychology, and wisdom from the greatest minds through quotes, history, and language.">
+    <title>Chable Tair — The Perspective Engine</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Source Serif 4"', 'Georgia', 'serif'],
+                        display: ['"Playfair Display"', 'serif'],
+                        sans: ['Inter', 'system-ui', 'sans-serif']
+                    },
+                    colors: {
+                        noir: {
+                            950: '#0a0a0a',
+                            900: '#111111',
+                            800: '#1a1a1a',
+                            700: '#2a2a2a',
+                            200: '#e8e2db',
+                            100: '#ede7e0',
+                            50: '#f5f0eb'
+                        },
+                        accent: '#8b1a1a'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="dark:bg-[#0a0a0a] bg-[#f5f0eb] dark:text-[#f5f0eb] text-[#0a0a0a] min-h-screen font-serif">
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="sticky top-0 z-50 glass border-b dark:border-white/[0.06] border-black/[0.06]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <a href="#home" class="flex items-center gap-2.5 group" data-scroll>
+                    <span class="text-2xl font-bold font-display text-[#8b1a1a]">CT</span>
+                    <span class="text-lg font-bold font-display dark:text-[#f5f0eb] text-[#0a0a0a]">Chable Tair</span>
+                </a>
+
+                <!-- Desktop Nav Links -->
+                <div class="hidden lg:flex items-center gap-1">
+                    <a href="#home" class="nav-link px-3 py-2 rounded-lg text-sm font-medium font-sans dark:text-[#a8a29e] text-[#57534e] hover:text-[#8b1a1a] transition-colors" data-scroll>Home</a>
+                    <a href="#quotes" class="nav-link px-3 py-2 rounded-lg text-sm font-medium font-sans dark:text-[#a8a29e] text-[#57534e] hover:text-[#8b1a1a] transition-colors" data-scroll>Quotes</a>
+                    <a href="#onthisday" class="nav-link px-3 py-2 rounded-lg text-sm font-medium font-sans dark:text-[#a8a29e] text-[#57534e] hover:text-[#8b1a1a] transition-colors" data-scroll>On This Day</a>
+                    <a href="#authors" class="nav-link px-3 py-2 rounded-lg text-sm font-medium font-sans dark:text-[#a8a29e] text-[#57534e] hover:text-[#8b1a1a] transition-colors" data-scroll>Authors</a>
+                    <a href="#schools" class="nav-link px-3 py-2 rounded-lg text-sm font-medium font-sans dark:text-[#a8a29e] text-[#57534e] hover:text-[#8b1a1a] transition-colors" data-scroll>Schools</a>
+                    <a href="#debate" class="nav-link px-3 py-2 rounded-lg text-sm font-medium font-sans dark:text-[#a8a29e] text-[#57534e] hover:text-[#8b1a1a] transition-colors" data-scroll>Debate</a>
+                    <a href="#words" class="nav-link px-3 py-2 rounded-lg text-sm font-medium font-sans dark:text-[#a8a29e] text-[#57534e] hover:text-[#8b1a1a] transition-colors" data-scroll>Words</a>
+                    <a href="#favorites" class="nav-link px-3 py-2 rounded-lg text-sm font-medium font-sans dark:text-[#a8a29e] text-[#57534e] hover:text-[#8b1a1a] transition-colors relative" data-scroll>
+                        Favorites
+                        <span id="fav-count-badge" class="hidden absolute -top-1 -right-3 bg-[#8b1a1a] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold font-sans">0</span>
+                    </a>
+                </div>
+
+                <!-- Right Side Controls -->
+                <div class="flex items-center gap-3">
+                    <!-- Theme Toggle -->
+                    <button id="theme-toggle" class="p-2 rounded-lg dark:hover:bg-white/[0.06] hover:bg-black/[0.06] transition-all duration-300" aria-label="Toggle theme">
+                        <svg class="w-5 h-5 hidden dark:block text-[#a8a29e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                        </svg>
+                        <svg class="w-5 h-5 block dark:hidden text-[#57534e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                        </svg>
+                    </button>
+
+                    <!-- Hamburger Button -->
+                    <button id="hamburger-btn" class="lg:hidden p-2 rounded-lg dark:hover:bg-white/[0.06] hover:bg-black/[0.06] transition-all duration-300" aria-label="Open menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== MOBILE MENU OVERLAY ========== -->
+    <div id="mobile-menu-overlay" class="fixed inset-0 z-50" style="display:none;">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" id="mobile-menu-backdrop"></div>
+        <div id="mobile-menu-panel" class="mobile-menu absolute right-0 top-0 h-full w-72 dark:bg-[#111111] bg-[#f5f0eb] shadow-2xl">
+            <div class="flex items-center justify-between p-4 border-b dark:border-white/[0.06] border-black/[0.06]">
+                <span class="text-lg font-bold font-display text-[#8b1a1a]">Menu</span>
+                <button id="mobile-menu-close" class="p-2 rounded-lg dark:hover:bg-white/[0.06] hover:bg-black/[0.06] transition-all duration-300" aria-label="Close menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div id="mobile-nav" class="flex flex-col p-4 gap-1">
+                <a href="#home" class="nav-link block py-3 px-4 rounded-lg font-sans text-sm dark:text-[#a8a29e] text-[#57534e] hover:text-[#8b1a1a] transition-colors" data-scroll>Home</a>
+                <a href="#quotes" class="nav-link block py-3 px-4 rounded-lg font-sans text-sm dark:text-[#a8a29e] text-[#57534e] hover:text-[#8b1a1a] transition-colors" data-scroll>Quotes</a>
+                <a href="#onthisday" class="nav-link block py-3 px-4 rounded-lg font-sans text-sm dark:text-[#a8a29e] text-[#57534e] hover:text-[#8b1a1a] transition-colors" data-scroll>On This Day</a>
+                <a href="#authors" class="nav-link block py-3 px-4 rounded-lg font-sans text-sm dark:text-[#a8a29e] text-[#57534e] hover:text-[#8b1a1a] transition-colors" data-scroll>Authors</a>
+                <a href="#schools" class="nav-link block py-3 px-4 rounded-lg font-sans text-sm dark:text-[#a8a29e] text-[#57534e] hover:text-[#8b1a1a] transition-colors" data-scroll>Schools</a>
+                <a href="#debate" class="nav-link block py-3 px-4 rounded-lg font-sans text-sm dark:text-[#a8a29e] text-[#57534e] hover:text-[#8b1a1a] transition-colors" data-scroll>Debate</a>
+                <a href="#words" class="nav-link block py-3 px-4 rounded-lg font-sans text-sm dark:text-[#a8a29e] text-[#57534e] hover:text-[#8b1a1a] transition-colors" data-scroll>Words</a>
+                <a href="#favorites" class="nav-link block py-3 px-4 rounded-lg font-sans text-sm dark:text-[#a8a29e] text-[#57534e] hover:text-[#8b1a1a] transition-colors relative" data-scroll>Favorites</a>
+            </div>
+            <div class="p-4 border-t dark:border-white/[0.06] border-black/[0.06]">
+                <button id="theme-toggle-mobile" class="flex items-center gap-3 w-full py-3 px-4 rounded-lg dark:hover:bg-white/[0.06] hover:bg-black/[0.06] transition-all duration-300 font-sans text-sm">
+                    <svg class="w-5 h-5 hidden dark:block text-[#a8a29e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                    </svg>
+                    <svg class="w-5 h-5 block dark:hidden text-[#57534e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                    </svg>
+                    <span class="dark:hidden dark:text-[#a8a29e] text-[#57534e]">Dark Mode</span>
+                    <span class="hidden dark:inline dark:text-[#a8a29e] text-[#57534e]">Light Mode</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== SECTION 1: HERO ========== -->
+    <section id="home" class="hero-noir relative min-h-[80vh] flex items-center">
+        <!-- Particles (5 ultra-subtle) -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center w-full">
+            <h1 class="font-display text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight dark:text-[#f5f0eb] text-[#0a0a0a]">
+                See the World Through<br><span class="text-[#8b1a1a]">Different Lenses</span>
+            </h1>
+            <p class="text-lg md:text-xl dark:text-[#a8a29e] text-[#57534e] max-w-2xl mx-auto mb-12 font-serif">
+                Explore philosophy, psychology, and wisdom from the greatest minds
+            </p>
+
+            <!-- Daily Perspective Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-12">
+                <!-- Card 1: Quote of the Day -->
+                <div class="glass rounded-xl p-6 text-left hover:scale-[1.02] transition-transform duration-300">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-sm font-semibold uppercase tracking-wider text-[#8b1a1a] font-sans">Quote of the Day</span>
+                    </div>
+                    <div id="hero-quote" class="dark:text-[#a8a29e] text-[#57534e] text-sm leading-relaxed min-h-[60px]">
+                        <div class="flex items-center gap-2"><div class="pulse-dot"><span></span><span></span><span></span></div></div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Word of the Day -->
+                <div class="glass rounded-xl p-6 text-left hover:scale-[1.02] transition-transform duration-300">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-sm font-semibold uppercase tracking-wider text-[#8b1a1a] font-sans">Word of the Day</span>
+                    </div>
+                    <div id="hero-word" class="dark:text-[#a8a29e] text-[#57534e] text-sm leading-relaxed min-h-[60px]">
+                        <div class="flex items-center gap-2"><div class="pulse-dot"><span></span><span></span><span></span></div></div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Random Fact -->
+                <div class="glass rounded-xl p-6 text-left hover:scale-[1.02] transition-transform duration-300">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-sm font-semibold uppercase tracking-wider text-[#8b1a1a] font-sans">Random Fact</span>
+                    </div>
+                    <div id="hero-fact" class="dark:text-[#a8a29e] text-[#57534e] text-sm leading-relaxed min-h-[60px]">
+                        <div class="flex items-center gap-2"><div class="pulse-dot"><span></span><span></span><span></span></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-wrap items-center justify-center gap-4">
+                <button id="cta-explore" class="inline-flex items-center gap-2 bg-[#8b1a1a] hover:bg-[#a52222] text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 font-sans text-sm">
+                    Explore Quotes
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </button>
+                <button onclick="Remix.open()" class="inline-flex items-center gap-2 dark:bg-white/[0.06] bg-black/[0.06] dark:text-[#f5f0eb] text-[#0a0a0a] hover:bg-[#8b1a1a]/20 font-semibold py-3 px-8 rounded-lg transition-all duration-300 font-sans text-sm border dark:border-white/[0.06] border-black/[0.06]">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                    Remix Quotes
+                </button>
+                <button onclick="ZenMode.open()" class="inline-flex items-center gap-2 dark:bg-white/[0.06] bg-black/[0.06] dark:text-[#f5f0eb] text-[#0a0a0a] hover:bg-[#8b1a1a]/20 font-semibold py-3 px-8 rounded-lg transition-all duration-300 font-sans text-sm border dark:border-white/[0.06] border-black/[0.06]">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                    Zen Mode
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider max-w-7xl mx-auto">
+
+    <!-- ========== SECTION 2: QUOTES EXPLORER ========== -->
+    <section id="quotes" class="py-16 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="font-display text-3xl md:text-5xl font-bold mb-4 dark:text-[#f5f0eb] text-[#0a0a0a]">Quotes Explorer</h2>
+                <p class="dark:text-[#a8a29e] text-[#57534e] max-w-xl mx-auto">Discover timeless wisdom from history's greatest thinkers</p>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="max-w-2xl mx-auto mb-8">
+                <div class="relative">
+                    <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 dark:text-[#6b6560] text-[#8a8580]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                    <input id="quotes-search" type="text" placeholder="Search quotes or authors..." class="w-full pl-12 pr-4 py-3 rounded-lg glass dark:text-[#f5f0eb] text-[#0a0a0a] dark:placeholder-[#6b6560] placeholder-[#8a8580] focus:outline-none focus:ring-2 focus:ring-[#8b1a1a] transition-all duration-300 font-sans text-sm">
+                </div>
+            </div>
+
+            <!-- Filter Chips -->
+            <div class="flex flex-wrap justify-center gap-2 mb-6">
+                <button class="filter-chip active px-4 py-1.5 rounded-full text-sm font-medium font-sans border dark:border-white/[0.06] border-black/[0.06] dark:text-[#a8a29e] text-[#57534e] transition-all duration-300 hover:border-[#8b1a1a]" data-tag="all">All</button>
+                <button class="filter-chip px-4 py-1.5 rounded-full text-sm font-medium font-sans border dark:border-white/[0.06] border-black/[0.06] dark:text-[#a8a29e] text-[#57534e] transition-all duration-300 hover:border-[#8b1a1a]" data-tag="philosophy">Philosophy</button>
+                <button class="filter-chip px-4 py-1.5 rounded-full text-sm font-medium font-sans border dark:border-white/[0.06] border-black/[0.06] dark:text-[#a8a29e] text-[#57534e] transition-all duration-300 hover:border-[#8b1a1a]" data-tag="psychology">Psychology</button>
+                <button class="filter-chip px-4 py-1.5 rounded-full text-sm font-medium font-sans border dark:border-white/[0.06] border-black/[0.06] dark:text-[#a8a29e] text-[#57534e] transition-all duration-300 hover:border-[#8b1a1a]" data-tag="wisdom">Wisdom</button>
+                <button class="filter-chip px-4 py-1.5 rounded-full text-sm font-medium font-sans border dark:border-white/[0.06] border-black/[0.06] dark:text-[#a8a29e] text-[#57534e] transition-all duration-300 hover:border-[#8b1a1a]" data-tag="life">Life</button>
+                <button class="filter-chip px-4 py-1.5 rounded-full text-sm font-medium font-sans border dark:border-white/[0.06] border-black/[0.06] dark:text-[#a8a29e] text-[#57534e] transition-all duration-300 hover:border-[#8b1a1a]" data-tag="motivation">Motivation</button>
+                <button class="filter-chip px-4 py-1.5 rounded-full text-sm font-medium font-sans border dark:border-white/[0.06] border-black/[0.06] dark:text-[#a8a29e] text-[#57534e] transition-all duration-300 hover:border-[#8b1a1a]" data-tag="change">Change</button>
+                <button class="filter-chip px-4 py-1.5 rounded-full text-sm font-medium font-sans border dark:border-white/[0.06] border-black/[0.06] dark:text-[#a8a29e] text-[#57534e] transition-all duration-300 hover:border-[#8b1a1a]" data-tag="love">Love</button>
+                <button class="filter-chip px-4 py-1.5 rounded-full text-sm font-medium font-sans border dark:border-white/[0.06] border-black/[0.06] dark:text-[#a8a29e] text-[#57534e] transition-all duration-300 hover:border-[#8b1a1a]" data-tag="science">Science</button>
+            </div>
+
+            <!-- Sort & Stats -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
+                <p id="quotes-stats" class="text-sm dark:text-[#6b6560] text-[#8a8580] font-sans"></p>
+                <div class="flex items-center gap-2">
+                    <label for="quotes-sort" class="text-sm dark:text-[#6b6560] text-[#8a8580] font-sans">Sort by:</label>
+                    <select id="quotes-sort" class="glass rounded-lg px-3 py-2 text-sm dark:text-[#f5f0eb] text-[#0a0a0a] focus:outline-none focus:ring-2 focus:ring-[#8b1a1a] dark:bg-white/[0.03] bg-black/[0.03] font-sans">
+                        <option value="relevance">Relevance</option>
+                        <option value="author-az">Author A-Z</option>
+                        <option value="author-za">Author Z-A</option>
+                        <option value="shortest">Shortest</option>
+                        <option value="longest">Longest</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Quotes Grid -->
+            <div id="quotes-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+            <!-- Empty State -->
+            <div id="quotes-empty" class="hidden text-center py-16">
+                <p class="text-xl mb-2 dark:text-[#a8a29e] text-[#57534e]">No quotes found</p>
+                <p class="dark:text-[#6b6560] text-[#8a8580] text-sm font-sans">Try adjusting your search or filters</p>
+            </div>
+
+            <!-- Pagination -->
+            <div id="quotes-pagination" class="flex justify-center items-center gap-2 mt-10"></div>
+        </div>
+    </section>
+
+    <hr class="section-divider max-w-7xl mx-auto">
+
+    <!-- ========== SECTION 3: ON THIS DAY ========== -->
+    <section id="onthisday" class="py-16 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="font-display text-3xl md:text-5xl font-bold mb-4 dark:text-[#f5f0eb] text-[#0a0a0a]">On This Day in History</h2>
+                <p class="text-lg dark:text-[#a8a29e] text-[#57534e]">
+                    Discover what happened on <span id="onthisday-date" class="font-semibold text-[#8b1a1a]"></span>
+                </p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-2 mb-10">
+                <button class="otd-filter-btn filter-chip active px-4 py-1.5 rounded-full text-sm font-medium font-sans border dark:border-white/[0.06] border-black/[0.06] dark:text-[#a8a29e] text-[#57534e] transition-all duration-300 hover:border-[#8b1a1a]" data-filter="all">All</button>
+                <button class="otd-filter-btn filter-chip px-4 py-1.5 rounded-full text-sm font-medium font-sans border dark:border-white/[0.06] border-black/[0.06] dark:text-[#a8a29e] text-[#57534e] transition-all duration-300 hover:border-[#8b1a1a]" data-filter="events">Events</button>
+                <button class="otd-filter-btn filter-chip px-4 py-1.5 rounded-full text-sm font-medium font-sans border dark:border-white/[0.06] border-black/[0.06] dark:text-[#a8a29e] text-[#57534e] transition-all duration-300 hover:border-[#8b1a1a]" data-filter="births">Births</button>
+                <button class="otd-filter-btn filter-chip px-4 py-1.5 rounded-full text-sm font-medium font-sans border dark:border-white/[0.06] border-black/[0.06] dark:text-[#a8a29e] text-[#57534e] transition-all duration-300 hover:border-[#8b1a1a]" data-filter="deaths">Deaths</button>
+            </div>
+
+            <!-- Timeline Container -->
+            <div id="onthisday-timeline" class="max-w-4xl mx-auto"></div>
+
+            <!-- Load More -->
+            <div class="text-center mt-10">
+                <button id="otd-load-more" class="inline-flex items-center gap-2 glass hover:bg-[#8b1a1a]/10 text-[#8b1a1a] font-semibold py-3 px-8 rounded-lg transition-all duration-300 font-sans text-sm hidden border dark:border-white/[0.06] border-black/[0.06]">
+                    Load More
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider max-w-7xl mx-auto">
+
+    <!-- ========== SECTION 4: AUTHORS ========== -->
+    <section id="authors" class="py-16 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="font-display text-3xl md:text-5xl font-bold mb-4 dark:text-[#f5f0eb] text-[#0a0a0a]">
+                    Great Minds <span id="authors-count" class="text-lg dark:text-[#6b6560] text-[#8a8580] font-normal font-sans"></span>
+                </h2>
+                <p class="dark:text-[#a8a29e] text-[#57534e] max-w-xl mx-auto">Explore the thinkers behind the wisdom</p>
+            </div>
+
+            <!-- Search & Sort -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8 max-w-3xl mx-auto">
+                <div class="relative flex-1 w-full">
+                    <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 dark:text-[#6b6560] text-[#8a8580]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                    <input id="authors-search" type="text" placeholder="Search authors..." class="w-full pl-12 pr-4 py-3 rounded-lg glass dark:text-[#f5f0eb] text-[#0a0a0a] dark:placeholder-[#6b6560] placeholder-[#8a8580] focus:outline-none focus:ring-2 focus:ring-[#8b1a1a] transition-all duration-300 font-sans text-sm">
+                </div>
+                <div class="flex items-center gap-2">
+                    <label for="authors-sort" class="text-sm dark:text-[#6b6560] text-[#8a8580] whitespace-nowrap font-sans">Sort by:</label>
+                    <select id="authors-sort" class="glass rounded-lg px-3 py-2 text-sm dark:text-[#f5f0eb] text-[#0a0a0a] focus:outline-none focus:ring-2 focus:ring-[#8b1a1a] dark:bg-white/[0.03] bg-black/[0.03] font-sans">
+                        <option value="most-quotes">Most Quotes</option>
+                        <option value="az">A-Z</option>
+                        <option value="za">Z-A</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Authors Grid -->
+            <div id="authors-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </div>
+    </section>
+
+    <hr class="section-divider max-w-7xl mx-auto">
+
+    <!-- ========== SECTION 5: SCHOOLS OF THOUGHT ========== -->
+    <section id="schools" class="py-16 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="font-display text-3xl md:text-5xl font-bold mb-4 dark:text-[#f5f0eb] text-[#0a0a0a]">Schools of Thought</h2>
+                <p class="dark:text-[#a8a29e] text-[#57534e] max-w-xl mx-auto">Ten philosophical traditions that shaped how we understand the world</p>
+            </div>
+
+            <!-- Schools Grid -->
+            <div id="schools-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </div>
+    </section>
+
+    <hr class="section-divider max-w-7xl mx-auto">
+
+    <!-- ========== SECTION 6: PHILOSOPHICAL DEBATE ========== -->
+    <section id="debate" class="py-16 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="font-display text-3xl md:text-5xl font-bold mb-4 dark:text-[#f5f0eb] text-[#0a0a0a]">Philosophical Debate</h2>
+                <p class="dark:text-[#a8a29e] text-[#57534e] max-w-xl mx-auto">Two minds, one question. Which perspective resonates with you?</p>
+            </div>
+
+            <!-- Topic Label & Question -->
+            <div class="text-center mb-8">
+                <span class="inline-block text-xs uppercase tracking-widest font-sans font-semibold text-[#8b1a1a] mb-2 px-3 py-1 rounded-full dark:bg-white/[0.06] bg-black/[0.06]" id="debate-topic-label"></span>
+                <h3 class="font-display text-2xl md:text-3xl font-bold dark:text-[#f5f0eb] text-[#0a0a0a]" id="debate-question"></h3>
+            </div>
+
+            <!-- Debate Container (side A | VS | side B) -->
+            <div id="debate-container" class="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-6 max-w-5xl mx-auto mb-8"></div>
+
+            <!-- Results -->
+            <div id="debate-results" class="max-w-2xl mx-auto mb-8"></div>
+
+            <!-- Topic Navigation -->
+            <div class="flex items-center justify-center gap-4">
+                <button onclick="Debate.prevTopic()" class="flex items-center gap-2 dark:bg-white/[0.06] bg-black/[0.06] dark:text-[#a8a29e] text-[#57534e] hover:text-[#8b1a1a] font-medium py-2.5 px-6 rounded-lg transition-all duration-300 font-sans text-sm border dark:border-white/[0.06] border-black/[0.06]">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                    Previous
+                </button>
+                <button onclick="Debate.nextTopic()" class="flex items-center gap-2 dark:bg-white/[0.06] bg-black/[0.06] dark:text-[#a8a29e] text-[#57534e] hover:text-[#8b1a1a] font-medium py-2.5 px-6 rounded-lg transition-all duration-300 font-sans text-sm border dark:border-white/[0.06] border-black/[0.06]">
+                    Next
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider max-w-7xl mx-auto">
+
+    <!-- ========== SECTION 7: WORD EXPLORER ========== -->
+    <section id="words" class="py-16 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="font-display text-3xl md:text-5xl font-bold mb-4 dark:text-[#f5f0eb] text-[#0a0a0a]">Explore the Language of Thought</h2>
+                <p class="dark:text-[#a8a29e] text-[#57534e] max-w-xl mx-auto">Look up any word to discover its meaning, pronunciation, and more</p>
+            </div>
+
+            <!-- Word Search -->
+            <div class="max-w-xl mx-auto mb-10">
+                <div class="flex gap-3">
+                    <div class="relative flex-1">
+                        <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 dark:text-[#6b6560] text-[#8a8580]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                        <input id="word-search" type="text" placeholder="Search any word..." class="w-full pl-12 pr-4 py-4 rounded-lg glass dark:text-[#f5f0eb] text-[#0a0a0a] dark:placeholder-[#6b6560] placeholder-[#8a8580] focus:outline-none focus:ring-2 focus:ring-[#8b1a1a] transition-all duration-300 text-lg">
+                    </div>
+                    <button id="word-search-btn" class="bg-[#8b1a1a] hover:bg-[#a52222] text-white font-semibold px-6 py-4 rounded-lg transition-all duration-300">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Word Result -->
+            <div id="word-result" class="hidden max-w-3xl mx-auto"></div>
+
+            <!-- Word Error -->
+            <div id="word-error" class="hidden max-w-xl mx-auto text-center py-10">
+                <p class="text-xl mb-2 dark:text-[#a8a29e] text-[#57534e]">Word not found</p>
+                <p class="dark:text-[#6b6560] text-[#8a8580] text-sm font-sans">Try searching for a different word</p>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider max-w-7xl mx-auto">
+
+    <!-- ========== SECTION 8: FAVORITES ========== -->
+    <section id="favorites" class="py-16 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="font-display text-3xl md:text-5xl font-bold mb-4 dark:text-[#f5f0eb] text-[#0a0a0a]">
+                    Your Saved Perspectives <span id="favorites-total-count" class="text-lg dark:text-[#6b6560] text-[#8a8580] font-normal font-sans"></span>
+                </h2>
+                <p class="dark:text-[#a8a29e] text-[#57534e] max-w-xl mx-auto">Your personal collection of wisdom and inspiration</p>
+            </div>
+
+            <!-- Controls Row -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8 max-w-4xl mx-auto">
+                <div class="relative flex-1 w-full">
+                    <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 dark:text-[#6b6560] text-[#8a8580]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                    <input id="favorites-search" type="text" placeholder="Search favorites..." class="w-full pl-12 pr-4 py-3 rounded-lg glass dark:text-[#f5f0eb] text-[#0a0a0a] dark:placeholder-[#6b6560] placeholder-[#8a8580] focus:outline-none focus:ring-2 focus:ring-[#8b1a1a] transition-all duration-300 font-sans text-sm">
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="flex items-center gap-2">
+                        <label for="favorites-sort" class="text-sm dark:text-[#6b6560] text-[#8a8580] whitespace-nowrap font-sans">Sort by:</label>
+                        <select id="favorites-sort" class="glass rounded-lg px-3 py-2 text-sm dark:text-[#f5f0eb] text-[#0a0a0a] focus:outline-none focus:ring-2 focus:ring-[#8b1a1a] dark:bg-white/[0.03] bg-black/[0.03] font-sans">
+                            <option value="newest">Newest</option>
+                            <option value="oldest">Oldest</option>
+                            <option value="author-az">Author A-Z</option>
+                            <option value="author-za">Author Z-A</option>
+                        </select>
+                    </div>
+                    <button id="favorites-export" class="inline-flex items-center gap-2 glass hover:bg-[#8b1a1a]/10 text-[#8b1a1a] font-medium py-2 px-4 rounded-lg transition-all duration-300 text-sm font-sans border dark:border-white/[0.06] border-black/[0.06]">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        Export
+                    </button>
+                </div>
+            </div>
+
+            <!-- Favorites Grid -->
+            <div id="favorites-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+            <!-- Empty State -->
+            <div id="favorites-empty" class="text-center py-16">
+                <p class="text-xl mb-2 dark:text-[#a8a29e] text-[#57534e]">No favorites yet</p>
+                <p class="dark:text-[#6b6560] text-[#8a8580] text-sm font-sans">Start exploring and save quotes that resonate with you!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="py-12 px-4 border-t dark:border-white/[0.06] border-black/[0.06]">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="flex items-center justify-center gap-2.5 mb-4">
+                <span class="text-2xl font-bold font-display text-[#8b1a1a]">CT</span>
+                <span class="text-xl font-bold font-display dark:text-[#f5f0eb] text-[#0a0a0a]">Chable Tair</span>
+            </div>
+            <p class="dark:text-[#a8a29e] text-[#57534e] mb-2 text-sm">The Perspective Engine</p>
+            <p class="dark:text-[#6b6560] text-[#8a8580] text-xs mb-6 font-sans">Built with curiosity and JavaScript</p>
+            <div class="flex flex-wrap items-center justify-center gap-4 text-xs dark:text-[#6b6560] text-[#8a8580] font-sans">
+                <span>Powered by:</span>
+                <a href="https://dummyjson.com" target="_blank" rel="noopener noreferrer" class="hover:text-[#8b1a1a] transition-colors underline decoration-dotted">DummyJSON</a>
+                <span class="dark:text-white/[0.15] text-black/[0.15]">|</span>
+                <a href="https://stoic-quotes.com" target="_blank" rel="noopener noreferrer" class="hover:text-[#8b1a1a] transition-colors underline decoration-dotted">Stoic Quotes API</a>
+                <span class="dark:text-white/[0.15] text-black/[0.15]">|</span>
+                <a href="https://api.wikimedia.org" target="_blank" rel="noopener noreferrer" class="hover:text-[#8b1a1a] transition-colors underline decoration-dotted">Wikimedia API</a>
+                <span class="dark:text-white/[0.15] text-black/[0.15]">|</span>
+                <a href="https://dictionaryapi.dev" target="_blank" rel="noopener noreferrer" class="hover:text-[#8b1a1a] transition-colors underline decoration-dotted">Free Dictionary API</a>
+                <span class="dark:text-white/[0.15] text-black/[0.15]">|</span>
+                <a href="https://uselessfacts.jsph.pl" target="_blank" rel="noopener noreferrer" class="hover:text-[#8b1a1a] transition-colors underline decoration-dotted">Useless Facts API</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== REMIX MODAL ========== -->
+    <div id="remix-modal" class="hidden fixed inset-0 z-[60] items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+        <div class="dark:bg-[#111111] bg-[#f5f0eb] rounded-xl max-w-2xl w-full p-8 relative border dark:border-white/[0.06] border-black/[0.06]" onclick="event.stopPropagation()">
+            <!-- Close -->
+            <button onclick="Remix.close()" class="absolute top-4 right-4 dark:text-[#6b6560] text-[#8a8580] hover:text-[#8b1a1a] transition-colors p-1">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+
+            <!-- Title -->
+            <h3 class="font-display text-2xl font-bold mb-1 dark:text-[#f5f0eb] text-[#0a0a0a]">Quote Remix</h3>
+            <p class="text-sm dark:text-[#6b6560] text-[#8a8580] mb-8 font-sans">Two quotes, remixed into something new</p>
+
+            <!-- Top Half -->
+            <div class="mb-2">
+                <div class="flex items-start justify-between gap-3 mb-1">
+                    <p id="remix-top-text" class="font-display italic text-lg leading-relaxed dark:text-[#f5f0eb] text-[#0a0a0a] flex-1"></p>
+                    <button id="remix-lock-top" onclick="Remix.toggleLock('top')" class="flex-shrink-0 p-2 rounded-lg dark:bg-white/[0.06] bg-black/[0.06] dark:text-[#a8a29e] text-[#57534e] hover:text-[#8b1a1a] transition-all" title="Lock top half">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                    </button>
+                </div>
+                <p id="remix-top-author" class="text-sm font-semibold text-[#8b1a1a] font-sans"></p>
+            </div>
+
+            <!-- Divider -->
+            <div class="flex items-center gap-4 my-4">
+                <div class="flex-1 h-px dark:bg-white/[0.06] bg-black/[0.06]"></div>
+                <span class="text-xs uppercase tracking-widest dark:text-[#6b6560] text-[#8a8580] font-sans font-semibold">remixed with</span>
+                <div class="flex-1 h-px dark:bg-white/[0.06] bg-black/[0.06]"></div>
+            </div>
+
+            <!-- Bottom Half -->
+            <div class="mb-8">
+                <div class="flex items-start justify-between gap-3 mb-1">
+                    <p id="remix-bottom-text" class="font-display italic text-lg leading-relaxed dark:text-[#f5f0eb] text-[#0a0a0a] flex-1"></p>
+                    <button id="remix-lock-bottom" onclick="Remix.toggleLock('bottom')" class="flex-shrink-0 p-2 rounded-lg dark:bg-white/[0.06] bg-black/[0.06] dark:text-[#a8a29e] text-[#57534e] hover:text-[#8b1a1a] transition-all" title="Lock bottom half">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                    </button>
+                </div>
+                <p id="remix-bottom-author" class="text-sm font-semibold text-[#8b1a1a] font-sans"></p>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex flex-wrap gap-3">
+                <button onclick="Remix.generate()" class="flex items-center gap-2 bg-[#8b1a1a] hover:bg-[#a52222] text-white font-semibold py-2.5 px-6 rounded-lg transition-all duration-300 font-sans text-sm">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                    Re-roll
+                </button>
+                <button onclick="Remix.saveRemix()" class="flex items-center gap-2 dark:bg-white/[0.06] bg-black/[0.06] dark:text-[#f5f0eb] text-[#0a0a0a] hover:bg-[#8b1a1a]/20 font-semibold py-2.5 px-6 rounded-lg transition-all duration-300 font-sans text-sm border dark:border-white/[0.06] border-black/[0.06]">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                    Save to Favorites
+                </button>
+                <button onclick="Remix.shareRemix()" class="flex items-center gap-2 dark:bg-white/[0.06] bg-black/[0.06] dark:text-[#f5f0eb] text-[#0a0a0a] hover:bg-[#8b1a1a]/20 font-semibold py-2.5 px-6 rounded-lg transition-all duration-300 font-sans text-sm border dark:border-white/[0.06] border-black/[0.06]">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+                    Share
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== ZEN MODE OVERLAY ========== -->
+    <div id="zen-overlay" class="hidden fixed inset-0 z-[70] flex-col items-center justify-center bg-[#0a0a0a]">
+        <!-- Close button -->
+        <button onclick="ZenMode.close()" class="absolute top-6 right-6 text-white/30 hover:text-white/60 transition-colors z-10 p-2">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+
+        <!-- Quote Display -->
+        <div class="flex-1 flex items-center justify-center px-8 max-w-4xl mx-auto w-full">
+            <div class="text-center">
+                <p id="zen-text" class="font-display text-2xl md:text-4xl lg:text-5xl font-bold leading-relaxed text-white mb-8"></p>
+                <p id="zen-author" class="text-lg text-[#8b1a1a] font-sans font-semibold" style="opacity:0;"></p>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="pb-8 px-8 w-full max-w-4xl mx-auto">
+            <!-- Progress Bar -->
+            <div class="w-full h-1 rounded-full bg-white/[0.06] mb-6 overflow-hidden">
+                <div id="zen-progress-bar" class="h-full bg-[#8b1a1a] rounded-full transition-all duration-500" style="width:0%"></div>
+            </div>
+
+            <!-- Bottom Controls -->
+            <div class="flex items-center justify-between">
+                <button onclick="ZenMode.prevQuote()" class="text-white/30 hover:text-white/60 transition-colors p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                </button>
+
+                <div class="flex items-center gap-4">
+                    <button id="zen-pause-btn" onclick="ZenMode.togglePause()" class="text-white/30 hover:text-white/60 transition-colors p-2">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                    </button>
+                    <span id="zen-counter" class="text-white/20 text-sm font-sans font-medium"></span>
+                </div>
+
+                <button onclick="ZenMode.nextQuote()" class="text-white/30 hover:text-white/60 transition-colors p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </button>
+            </div>
+
+            <!-- Keyboard Hints -->
+            <p class="text-center text-white/10 text-xs font-sans mt-4">
+                Space = pause &middot; Arrow keys = navigate &middot; Esc = exit
+            </p>
+        </div>
+    </div>
+
+    <!-- ========== TOAST CONTAINER ========== -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-3"></div>
+
+    <!-- ========== BACK TO TOP BUTTON ========== -->
+    <button id="back-to-top" class="back-to-top fixed bottom-6 left-6 z-40 p-3 rounded-full bg-[#8b1a1a] text-white shadow-lg hover:bg-[#a52222] transition-all duration-300" style="display:none;" aria-label="Back to top">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+        </svg>
+    </button>
+
+    <!-- ========== ZEN MODE FAB ========== -->
+    <button onclick="ZenMode.open()" class="fixed bottom-6 right-20 z-40 p-3 rounded-full dark:bg-white/[0.06] bg-black/[0.06] dark:text-[#a8a29e] text-[#57534e] hover:text-[#8b1a1a] hover:bg-[#8b1a1a]/20 shadow-lg transition-all duration-300 border dark:border-white/[0.06] border-black/[0.06]" aria-label="Enter Zen Mode" title="Zen Mode">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+    </button>
+
+    <!-- ========== SCRIPTS ========== -->
+    <script src="js/utils.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/favorites.js"></script>
+    <script src="js/quotes.js"></script>
+    <script src="js/onthisday.js"></script>
+    <script src="js/authors.js"></script>
+    <script src="js/wordExplorer.js"></script>
+    <script src="js/schools.js"></script>
+    <script src="js/debate.js"></script>
+    <script src="js/remix.js"></script>
+    <script src="js/zenMode.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+</html>

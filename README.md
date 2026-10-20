@@ -1,4 +1,4 @@
-# Chable Tair — The Perspective Engine
+# Chable Tair — The Perspective Engine!!
 
 > A philosophy, psychology, and quotes exploration app that helps you see the world through different lenses.
 
